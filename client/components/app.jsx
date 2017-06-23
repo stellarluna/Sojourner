@@ -1,3 +1,4 @@
+
 class App extends React.Component{
 
   constructor(){
@@ -7,8 +8,10 @@ class App extends React.Component{
     }
   }
   render(){
-    return (<img src={require('http://www.pondclean.com/wp-content/uploads/2016/09/POND-1.jpg')} />);
+    return (
+        <img src='http://www.pondclean.com/wp-content/uploads/2016/09/POND-1.jpg' />
+      );
   }
-
 }
+
 ReactDOM.render(<App/>, document.getElementById('app'))
