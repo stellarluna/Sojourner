@@ -3,7 +3,7 @@ var app = express();
 var path = require('path')
 
 
-app.use(express.static(path.join(__dirname, '../compiled')));
+app.use(express.static(path.join(__dirname, '/client')));
 
 
 app.listen(process.env.PORT || 3000, function(){
