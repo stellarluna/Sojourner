@@ -1,0 +1,1 @@
+web: node /compiled/server/server.js
