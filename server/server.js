@@ -6,6 +6,8 @@ var path = require('path')
 app.use(express.static(path.join(__dirname, '../compiled/')));
 
 app.get('/', function(req,res){
+  console.log(__dirname)
+  res.send(__dirname)
   res.sendFile(path.join(__dirname, '../client/index.html'));
 })
 
