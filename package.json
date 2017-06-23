@@ -4,7 +4,7 @@
   "description": "Exploration App",
   "main": "./server/server.js",
   "scripts": {
-    "start": "nodemon ./server/server.js",
+    "start": "node ./server/server.js",
     "build": "babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch"
   },
   "owners": "kermit",
