@@ -1,0 +1,12 @@
+{
+  "name": "sojourner",
+  "version": "1.0.0",
+  "description": "Exploration App",
+  "main": "./server/server.js",
+  "scripts": {
+    "start": "nodemon ./server/server.js"
+  },
+  "owners": "kermit",
+  "license": "UNLICENCED"
+
+}
