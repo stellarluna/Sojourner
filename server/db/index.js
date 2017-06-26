@@ -19,3 +19,5 @@ var User = db.define('User', {
 });
 
 User.sync();
+
+exports.User = User;
