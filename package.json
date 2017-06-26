@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./server/server.js",
     "bundle": "./node_modules/.bin/webpack",
-    "build": "node_modules/.bin/babel-node . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch"
+    "build": "node_modules/.bin/babel-node . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch",
+    "db" : "node server/db/index.js"
   },
   "owners": "kermit",
   "license": "UNLICENCED",

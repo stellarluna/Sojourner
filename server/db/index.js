@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-var db = new Sequelize('sojourner', 'valt', '', {
+var db = new Sequelize('sojourner', 'root', '', {
     host: 'localhost',
     dialect: 'postgres'
 });
