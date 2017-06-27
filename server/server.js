@@ -12,11 +12,11 @@ app.get('/', function(req,res){
   //res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-db.User.create({
-  Username: 'testname',
-  Email: 'testname@whatever.com'
-});
+// db.User.create({
+//   Username: 'testname',
+//   Email: 'testname@whatever.com'
+// });
 
-  app.listen(process.env.PORT || 3000, function(){
-    console.log("listening on process.environment.port or listening on 3000");
-  });
+app.listen(process.env.PORT || 3000, function(){
+  console.log("listening on process.environment.port or listening on 3000");
+});
