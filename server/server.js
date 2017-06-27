@@ -2,16 +2,18 @@ var express = require("express");
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
 var db = require('./db');
 
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../')));
-app.use(express.session({ secret: 'pondFinder' }));
 app.use(passport.initialize());
+app.use(session({ secret: 'pondFinder' }));
 app.use(passport.session());
+app.use(flash());
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -23,52 +25,60 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-passport.use('/login', new LocalStrategy({
+passport.use('login', new LocalStrategy({
     passReqToCallback: true
   },
   function(req, username, password, done) {
     // check in postgres database through Sequelize if a user
     // with username exists or not
-    db.User.findOne({ username: username }, function(err, user) {
+    db.User.findOne({ 'username': username }, function(err, user) {
       if (err) {
+        console.error("=== ERROR ===", err);
         return done(err);
       }
       if (!user) {
+        console.log('=== User Not Found ===');
         return done(null, false, req.flash('message', 'User Not Found'));
       }
-      if (!user.validPassword(user, password)) {
+      if (user.password !== password) {
+        console.log('=== Incorrect Password ===');
         return done(null, false, req.flash('message', 'Incorrect Password'));
       }
       return done(null, user);
     });
 }));
 
-passport.user('/signup', new LocalStrategy({
+passport.use('signup', new LocalStrategy({
   passReqToCallback: true
   },
   function(req, username, password, done) {
-    findOrCreateUser = function() {
-      User.findOne({ username: username }, function(err, user) {
-        if (err) {
-          return done(err);
-        }
-        if (user) {
-          return done(null, false, req.flash('message', 'User Already Exists'));
-        } else {
-          var newUser = new User();
+    console.log('req.body', req.body);
 
-          newUser.update({
-            username = username;
-            password = createHash(password);
-            email = req.body.email;
-            first_name = req.body.first_name;
-            last_name = req.body.last_name;
-          });
-        }
-      })
-    }
+    process.nextTick(db.User.findOne({ 'username': username }, function(err, user) {
+      if (err) {
+        // if error
+        console.error("=== ERROR ===", err);
+        return done(err, null, req.flash('message', 'Error'));
+      }
+      if (user) {
+        // if user already exists in database
+        console.log('=== User Already Exists ===');
+        return done(null, false, req.flash('message', 'User Already Exists'));
+      } else {
+        // successful signup
+        var newUser = db.User.Create({
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+        });
+        console.log('SUCCESSFUL SIGNUP!!!');
+        done(null, newUser, req.flash('message', 'User Created'));
+      }
+    }));
   }
-))
+));
 
 app.get('/', function(req, res){
   //console.log(__dirname)//__dirname === /app/server
@@ -82,26 +92,34 @@ app.get('/', function(req, res){
 // - login page (GET/POST)
 // - signup page (GET/POST)
 
-app.post('/signup', function(req, res) {
-  db.User.Create({
-    first_name = req.body.first_name,
-    last_name = req.body.last_name,
-    username = req.body.username,
-    email = req.body.email,
-    password = req.body.password,
-    home_city = req.body.home_city
-  });
-  res.send('User created');
-  res.redirect('/');
-
-});
+// app.post('/signup', function(req, res) {
+//   db.User.Create({
+//     first_name = req.body.first_name,
+//     last_name = req.body.last_name,
+//     username = req.body.username,
+//     email = req.body.email,
+//     password = req.body.password,
+//     home_city = req.body.home_city
+//   });
+//   res.send('User created');
+//   res.redirect('/');
+// });
 
 app.post('/login',
-  passport.authenticate('local', {
+  passport.authenticate('login', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+  })
+);
+
+app.post('/signup',
+  passport.authenticate('signup', {
     successRedirect: '/',
     failureRedirect: '/signup',
     failureFlash: true
-}));
+  })
+);
 
 app.post('/user', function(req, res) {
   // request for a user profile page
