@@ -53,7 +53,7 @@ passport.use('signup', new LocalStrategy({
   },
   function(req, username, password, done) {
     console.log('req.body', req.body);
-
+    // ^ console.log above never gets called
     process.nextTick(db.User.findOne({ 'username': username }, function(err, user) {
       if (err) {
         // if error
