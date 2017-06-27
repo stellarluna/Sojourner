@@ -3,3 +3,4 @@ node_modules
 compiled
 client/bundle.js
 *npm-debug.log
+config
