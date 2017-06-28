@@ -5,15 +5,13 @@
   "main": "./server/server.js",
   "scripts": {
     "start": "node ./server/server.js",
-    "bundle": "./node_modules/.bin/webpack --watch",
+    "bundle": "webpack --watch",
     "build": "node_modules/.bin/babel-node . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch",
     "db": "node server/db/index.js"
   },
   "owners": "kermit",
   "license": "UNLICENCED",
   "devDependencies": {
-
-
   },
   "dependencies": {
     "body-parser": "^1.17.2",
