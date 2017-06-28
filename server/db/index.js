@@ -1,15 +1,24 @@
 var Sequelize = require('sequelize');
 
+
+
 // var host = process.env.DATABASE_URL || 'localhost';
 if (process.env.DATABASE_URL) {
   // the application is executed on Heroku ... use the postgres database
+  db = new Sequelize(process.env.DATABASE_URL {
+    dialect:  'postgres',
+    logging:  false
+  });
+  // db = new Sequelize('postgresql-vertical-97135', 'jbzmosqdkhkdex', 'bc831a5f7c5de8bbf5fbd46a104b6de497845f940fa3f139e70ebbf268b72597', {
+  //   dialect:  'postgres',
+  //   logging:  false
+  // });
+} else {
+  // the application is executed on the local machine ... use mysql
   db = new Sequelize('postgresql-vertical-97135', 'jbzmosqdkhkdex', 'bc831a5f7c5de8bbf5fbd46a104b6de497845f940fa3f139e70ebbf268b72597', {
     dialect:  'postgres',
     logging:  false
-  })
-} else {
-  // the application is executed on the local machine ... use mysql
-  db = new Sequelize('postgresql-vertical-97135', 'jbzmosqdkhkdex', 'bc831a5f7c5de8bbf5fbd46a104b6de497845f940fa3f139e70ebbf268b72597');
+  });
 }
 
 
