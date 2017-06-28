@@ -5,7 +5,7 @@ var Sequelize = require('sequelize');
 // var host = process.env.DATABASE_URL || 'localhost';
 if (process.env.DATABASE_URL) {
   // the application is executed on Heroku ... use the postgres database
-  db = new Sequelize(process.env.DATABASE_URL {
+  db = new Sequelize(process.env.DATABASE_URL, {
     dialect:  'postgres',
     logging:  false
   });
