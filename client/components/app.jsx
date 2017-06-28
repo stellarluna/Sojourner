@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import BaseMap from 'Map';
 
 class App extends React.Component{
 
@@ -12,6 +13,7 @@ class App extends React.Component{
   render(){
     return (
         <img src='http://www.pondclean.com/wp-content/uploads/2016/09/POND-1.jpg' />
+        <BaseMap/>
       );
   }
 }
