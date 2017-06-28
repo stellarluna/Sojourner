@@ -13,7 +13,7 @@ app.use(session({ secret: 'pondFinder' }));
 app.get('/', (req, res) => {
   //console.log(__dirname)//__dirname === /app/server
   //res.send(__dirname)
-  res.send('Hello!!!');
+  res.status(200).send('Hello!!!');
   // res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
