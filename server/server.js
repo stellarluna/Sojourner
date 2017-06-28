@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-// var db = require('./db');
+var db = require('./db');
 
 app.use(express.static(path.join(__dirname, '../')));
 app.use(bodyParser.json());
