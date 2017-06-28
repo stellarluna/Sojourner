@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { Basemap } from './map';
+
 class App extends React.Component{
 
   constructor(){
@@ -11,11 +13,14 @@ class App extends React.Component{
   }
   render(){
     return (
-        <img src='http://www.pondclean.com/wp-content/uploads/2016/09/POND-1.jpg' />
+        <div>
+          <img src='http://www.pondclean.com/wp-content/uploads/2016/09/POND-1.jpg' />
+          <Basemap />
+        </div>
       );
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'))
 
 export default App;
