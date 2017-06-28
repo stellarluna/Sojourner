@@ -1,8 +1,14 @@
 var Sequelize = require('sequelize');
 
-var db = new Sequelize('sojourner', 'root', '', {
-    host: 'localhost',
-    dialect: 'postgres'
+var host = process.env.DATABASE_URL || 'localhost';
+var db = new Sequelize('postgresql-vertical-97135', 'jbzmosqdkhkdex', 'bc831a5f7c5de8bbf5fbd46a104b6de497845f940fa3f139e70ebbf268b72597', {
+  // ^database name and user name from heroku for production deployment
+  // for local development, use whatever you name your database and 'root' for user
+  host: host,
+  // host: 'localhost',
+  // for local development: host: 'localhost'
+  // for heroku deployment/production: host: process.env.DATABASE_URL
+  dialect: 'postgres'
 });
 
 db.authenticate()
