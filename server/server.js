@@ -1,5 +1,7 @@
 var express = require("express");
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 var path = require('path');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -35,6 +37,9 @@ app.get('/logout', (req, res) => {
 // - user profile page (enable PUT/POST requests for updates?)
 // - login page (GET/POST)
 // - signup page (GET/POST)
+app.get('/username', (req, res) => {
+  res.send(req.session.username);
+});
 
 app.post('/login', (req, res) => {
   var username = req.body.username;
@@ -50,6 +55,7 @@ app.post('/login', (req, res) => {
     if(user) {
       req.session.regenerate(() => {
         req.session.user_id = user.dataValues.id;
+        req.session.username = username;
         res.sendFile(path.join(__dirname, '/../index.html'));
       });
     } else {
@@ -77,7 +83,23 @@ app.post('/user', function(req, res) {
 
 app.use(express.static(path.join(__dirname, '../')));//moved from above
 
+//Socket IO
+io.on('connection', (socket) => {
 
-app.listen(process.env.PORT || 3000, function(){
+  console.log('A user has connected!');
+
+  socket.on('msg', function(msg, username){
+    console.log('msg recieved: ' + msg);
+    io.emit('msg', username.toUpperCase() + ': ' + msg);
+  });
+
+  socket.on('disconnect', () => {
+      console.log('A user has disconnected!');
+  });
+
+});
+
+
+http.listen(process.env.PORT || 3000, function(){
   console.log("listening on process.environment.port or listening on 3000");
 });
