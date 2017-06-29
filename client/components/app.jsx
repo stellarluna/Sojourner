@@ -14,8 +14,12 @@ class App extends React.Component{
   render(){
     return (
         <div>
+          <nav className="topbar">
+            {/*<span class="user-name">{{$ctrl.user}}</span>*/}
+            <a href="/logout" className="logout">Logout</a>
+          </nav>
           <img src='http://www.pondclean.com/wp-content/uploads/2016/09/POND-1.jpg' />
-          <Basemap />
+          {/*<Basemap />*/}
         </div>
       );
   }
