@@ -1,29 +1,36 @@
 <h2 class="signup-header">Sign up for a Sojourner account</h2>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<body style="width: 40%; margin-left: 5%">
 <form action="/signup" method="post">
-    <div>
+    <div class="form-group">
       <label for="username">Username:</label>
-      <input id="username" type="text" name="username">
+      <input class="form-control" id="username" type="text" name="username">
     </div>
-    <div>
+    <div class="form-group" >
       <label for="password">Password:</label>
-      <input id="password" type="text" name="password">
+      <input class="form-control" id="password" type="password" name="password">
     </div>
-    <div>
+    <div class="form-group" >
       <label for="interest1">Interest 1:</label>
-      <input id="interest1" type="text" name="interest1">
+      <input class="form-control" id="interest1" type="text" name="interest1">
     </div>
-      <div>
+      <div class="form-group" >
       <label for="interest2">Interest 2:</label>
-      <input id="interest2" type="text" name="interest2">
+      <input class="form-control" id="interest2" type="text" name="interest2">
     </div>
-    <div>
+    <div class="form-group" >
       <label for="interest3">Interest 3:</label>
-      <input id="interest3" type="text" name="interest3">
-    </div>
+      <input class="form-control" id="interest3" type="text" name="interest3">
+    </div class="form-group" >
     <div>
-      <input type="submit" value="Sign up">
+      <input class="btn btn-default" type="submit" value="Sign up">
     </div>
 </form>
 <p>
   <a href="/login">Login to your account &rarr;</a>
 <p>
+</body>
