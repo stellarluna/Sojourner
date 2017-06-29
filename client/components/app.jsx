@@ -18,7 +18,7 @@ class App extends React.Component{
             {/*<span class="user-name">{{$ctrl.user}}</span>*/}
             <a href="/logout" className="logout">Logout</a>
           </nav>
-          <img src='http://www.pondclean.com/wp-content/uploads/2016/09/POND-1.jpg' />
+          {/*<img src='http://www.pondclean.com/wp-content/uploads/2016/09/POND-1.jpg' />*/}
           {/*<Basemap />*/}
         </div>
       );

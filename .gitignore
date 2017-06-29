@@ -4,3 +4,4 @@ compiled
 client/bundle.js
 *npm-debug.log
 config
+package-lock.json

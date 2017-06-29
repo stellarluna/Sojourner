@@ -7,7 +7,8 @@
     "start": "node ./server/server.js",
     "bundle": "webpack --watch",
     "build": "node_modules/.bin/babel-node . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch",
-    "db": "node server/db/index.js"
+    "db": "node server/db/index.js",
+    "heroku-postbuild": "webpack --config ./webpack.config.js"
   },
   "owners": "kermit",
   "license": "UNLICENCED",
