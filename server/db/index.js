@@ -77,7 +77,7 @@ var User = db.define('User', {
 
 // currently drops table if one already exists (for dev
 // purposes)
-User.sync({force: true});
+User.sync({force: false});
 // Interests.sync({force: true});
 // User_Interests.sync({force: true});
 

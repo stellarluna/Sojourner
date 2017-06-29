@@ -7,7 +7,8 @@ const webpack = require('webpack');
 module.exports = {
   entry: [
     'babel-polyfill',
-    './client/components/app.jsx'
+    './client/components/app.jsx',
+    './client/components/chat.jsx'
   ],
   output: {
     path: path.resolve(__dirname, 'client'),
