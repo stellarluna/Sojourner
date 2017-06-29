@@ -5,16 +5,16 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var db = require('./db');
 
-app.use(express.static(path.join(__dirname, '../')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({ secret: 'pondFinder' }));
 
-app.get('/', (req, res) => {
-  //console.log(__dirname)//__dirname === /app/server
-  //res.send(__dirname)
-  res.status(200).send('Hello!!!');
-  // res.sendFile(path.join(__dirname, '../client/index.html'));
+app.get('/', function(req, res) {
+  if (req.session.user_id === undefined) {
+    res.sendFile(path.resolve(__dirname + '/../login.html'));
+  } else {
+    res.sendFile(path.resolve(__dirname + '/../index.html'));
+  }
 });
 
 app.get('/signup', (req, res) => {
@@ -74,6 +74,9 @@ app.post('/user', function(req, res) {
   // request for a user profile page
   res.render('/user');
 });
+
+app.use(express.static(path.join(__dirname, '../')));//moved from above
+
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("listening on process.environment.port or listening on 3000");

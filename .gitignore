@@ -1,6 +1,7 @@
-
+node_modules
 *.DS_Store
 compiled
 client/bundle.js
 *npm-debug.log
 config
+package-lock.json
