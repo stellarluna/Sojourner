@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import MapWrapper from './MapWrapper.jsx';
+import Map from './Map.jsx';
+// if you want to import a .jsx file, you must refer to it using the
+// './' and '.jsx' extension
 
-import { Basemap } from './map';
+// import { Basemap } from './map';
 
 class App extends React.Component{
 
@@ -20,6 +24,11 @@ class App extends React.Component{
           </nav>
           <img src='http://www.pondclean.com/wp-content/uploads/2016/09/POND-1.jpg' />
           {/*<Basemap />*/}
+        {/* <MapWrapper /> */}
+        <Map
+          containerElement={<div style={{ height: `100%`}} />} 
+          mapElement={<div style={{ height: `100%` }} />}
+        />
         </div>
       );
   }

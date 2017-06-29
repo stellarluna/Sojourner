@@ -5,7 +5,10 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './client/components/app.jsx',
+  entry: [
+    'babel-polyfill',
+    './client/components/app.jsx'
+  ],
   output: {
     path: path.resolve(__dirname, 'client'),
     filename: 'bundle.js'
@@ -14,22 +17,25 @@ module.exports = {
     'react': 'React',
     'react-dom': 'ReactDOM'
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     loaders: [
-      { 
-        test: /\.js$/, 
-        loaders: 'babel-loader',
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
         query: {
             presets: ["es2015", "react"]
-        },
-        exclude: /node_modules/ 
+        }
       },
-      { test: /\.jsx$/, 
-        loaders: 'babel-loader', 
+      { test: /\.jsx$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
         query: {
             presets: ["es2015", "react"]
-        },
-        exclude: /node_modules/ 
+        }
       }
     ]
   }

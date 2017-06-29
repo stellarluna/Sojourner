@@ -23,10 +23,12 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
+    "google-maps-react": "^1.0.19",
     "path": "^0.12.7",
     "pg": "^6.4.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-google-maps": "^6.3.0",
     "sequelize": "^4.2.0"
   }
 }
